@@ -1252,7 +1252,7 @@ void mark_page_dirty(struct kvm *kvm, gfn_t gfn)
 	if (memslot && memslot->dirty_bitmap) {
 		unsigned long rel_gfn = gfn - memslot->base_gfn;
 
-		generic___set_le_bit(rel_gfn, memslot->dirty_bitmap);
+		__set_le_bit(rel_gfn, memslot->dirty_bitmap);
 	}
 }
 
