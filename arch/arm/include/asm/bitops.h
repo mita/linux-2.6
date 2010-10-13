@@ -332,20 +332,6 @@ static inline int fls(int x)
 #define ext2_clear_bit_atomic(lock,nr,p)        \
 		test_and_clear_le_bit(nr, (unsigned long *)(p))
 
-/*
- * Minix is defined to use little-endian byte ordering.
- * These do not need to be atomic.
- */
-#define minix_set_bit(nr,p)			\
-		__set_le_bit(nr, (unsigned long *)(p))
-#define minix_test_bit(nr,p)			\
-		test_le_bit(nr, (unsigned long *)(p))
-#define minix_test_and_set_bit(nr,p)		\
-		__test_and_set_le_bit(nr, (unsigned long *)(p))
-#define minix_test_and_clear_bit(nr,p)		\
-		__test_and_clear_le_bit(nr, (unsigned long *)(p))
-#define minix_find_first_zero_bit(p,sz)		\
-		find_first_zero_le_bit((unsigned long *)(p), sz)
 
 #endif /* __KERNEL__ */
 
