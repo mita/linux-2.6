@@ -837,25 +837,10 @@ static inline int find_next_le_bit(void *vaddr, unsigned long size,
 	return offset + find_first_le_bit(p, size);
 }
 
-#define ext2_set_bit(nr, addr)       \
-	__test_and_set_le_bit((nr), (unsigned long *)(addr))
 #define ext2_set_bit_atomic(lock, nr, addr)       \
 	test_and_set_le_bit((nr), (unsigned long *)(addr))
-#define ext2_clear_bit(nr, addr)     \
-	__test_and_clear_le_bit((nr), (unsigned long *)(addr))
 #define ext2_clear_bit_atomic(lock, nr, addr)     \
 	test_and_clear_le_bit((nr), (unsigned long *)(addr))
-#define ext2_test_bit(nr, addr)      \
-	test_le_bit((nr), (unsigned long *)(addr))
-
-#define ext2_find_first_zero_bit(vaddr, size)	\
-	find_first_zero_le_bit((unsigned long *)(vaddr), (size))
-#define ext2_find_next_zero_bit(vaddr, size, offset)	\
-	find_next_zero_le_bit((unsigned long *)(vaddr), (size), (offset))
-#define ext2_find_first_bit(vaddr, size)	\
-	find_first_le_bit((unsigned long *)(vaddr), (size))
-#define ext2_find_next_bit(vaddr, size, offset)	\
-	find_next_le_bit((unsigned long *)(vaddr), (size), (offset))
 
 #include <asm-generic/bitops/minix.h>
 

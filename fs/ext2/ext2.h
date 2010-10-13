@@ -174,3 +174,14 @@ ext2_group_first_block_no(struct super_block *sb, unsigned long group_no)
 	return group_no * (ext2_fsblk_t)EXT2_BLOCKS_PER_GROUP(sb) +
 		le32_to_cpu(EXT2_SB(sb)->s_es->s_first_data_block);
 }
+
+#define ext2_set_bit(nr, addr)  \
+	__test_and_set_le_bit((nr), (unsigned long *)(addr))
+#define ext2_clear_bit(nr, addr) \
+	__test_and_clear_le_bit((nr), (unsigned long *)(addr))
+#define ext2_test_bit(nr, addr) \
+	test_le_bit((nr), (unsigned long *)(addr))
+#define ext2_find_first_zero_bit(addr, size)    \
+	find_first_zero_le_bit((unsigned long *)(addr), (size))
+#define ext2_find_next_zero_bit(addr, size, off)        \
+	find_next_zero_le_bit((unsigned long *)(addr), (size), (off))

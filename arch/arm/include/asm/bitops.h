@@ -327,22 +327,10 @@ static inline int fls(int x)
  * Ext2 is defined to use little-endian byte ordering.
  * These do not need to be atomic.
  */
-#define ext2_set_bit(nr,p)			\
-		__test_and_set_le_bit(nr, (unsigned long *)(p))
 #define ext2_set_bit_atomic(lock,nr,p)          \
 		test_and_set_le_bit(nr, (unsigned long *)(p))
-#define ext2_clear_bit(nr,p)			\
-		__test_and_clear_le_bit(nr, (unsigned long *)(p))
 #define ext2_clear_bit_atomic(lock,nr,p)        \
 		test_and_clear_le_bit(nr, (unsigned long *)(p))
-#define ext2_test_bit(nr,p)			\
-		test_le_bit(nr, (unsigned long *)(p))
-#define ext2_find_first_zero_bit(p,sz)		\
-		find_first_zero_le_bit((unsigned long *)(p), sz)
-#define ext2_find_next_zero_bit(p,sz,off)	\
-		find_next_zero_le_bit((unsigned long *)(p), sz, off)
-#define ext2_find_next_bit(p, sz, off) \
-		find_next_le_bit((unsigned long *)(p), sz, off)
 
 /*
  * Minix is defined to use little-endian byte ordering.
