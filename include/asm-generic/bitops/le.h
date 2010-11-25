@@ -12,6 +12,8 @@
 	find_next_zero_bit(addr, size, offset)
 #define find_next_le_bit(addr, size, offset) \
 	find_next_bit(addr, size, offset)
+#define find_first_zero_le_bit(addr, size) \
+	find_first_zero_bit(addr, size)
 
 #elif defined(__BIG_ENDIAN)
 
@@ -21,6 +23,9 @@ extern unsigned long find_next_zero_le_bit(const unsigned long *addr,
 		unsigned long size, unsigned long offset);
 extern unsigned long find_next_le_bit(const unsigned long *addr,
 		unsigned long size, unsigned long offset);
+
+#define find_first_zero_le_bit(addr, size) \
+	find_next_zero_le_bit((addr), (size), 0)
 
 #else
 #error "Please fix <asm/byteorder.h>"
@@ -42,8 +47,5 @@ extern unsigned long find_next_le_bit(const unsigned long *addr,
 	__test_and_set_bit((nr) ^ BITOP_LE_SWIZZLE, (addr))
 #define __test_and_clear_le_bit(nr, addr) \
 	__test_and_clear_bit((nr) ^ BITOP_LE_SWIZZLE, (addr))
-
-#define find_first_zero_le_bit(addr, size) \
-	find_next_zero_le_bit((addr), (size), 0)
 
 #endif /* _ASM_GENERIC_BITOPS_LE_H_ */
