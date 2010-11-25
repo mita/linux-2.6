@@ -34,6 +34,9 @@ config ARCH_HAS_ILOG2_U64
 config GENERIC_FIND_NEXT_BIT
 	def_bool y
 
+config GENERIC_FIND_LE_BIT
+	def_bool y
+
 config GENERIC_HWEIGHT
 	def_bool y
 
